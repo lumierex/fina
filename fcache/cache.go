@@ -5,7 +5,8 @@ import (
 	"sync"
 )
 
-// cache
+// cache for concurrency control
+// mu TODO ?
 type cache struct {
 	mu         sync.Mutex
 	lru        *lru.Cache

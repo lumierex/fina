@@ -13,7 +13,7 @@ func (v ByteView) Len() int {
 
 // ByteSlice avoid ByteView's inner data was revise by other program
 func (v ByteView) ByteSlice() []byte {
-	return v.cloneBytes(v.b)
+	return cloneBytes(v.b)
 }
 
 func (v ByteView) String() string {
@@ -21,7 +21,7 @@ func (v ByteView) String() string {
 }
 
 // cloneBytes
-func (v ByteView) cloneBytes(src []byte) []byte {
+func cloneBytes(src []byte) []byte {
 	dst := make([]byte, len(src))
 	copy(dst, src)
 	return dst
