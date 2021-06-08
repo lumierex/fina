@@ -2,6 +2,7 @@ package fcache
 
 import (
 	"hash/crc32"
+	"log"
 	"sort"
 	"strconv"
 )
@@ -32,7 +33,11 @@ func (m *Map) Add(keys ...string) {
 	for _, key := range keys {
 		for i := 0; i < m.replicas; i++ {
 			// 虚拟节点都指向key
+			// key 1 will hash to 01 11 21
+			// key 2 will be hashed to 02 12 22
+			log.Println("string key: ", strconv.Itoa(i)+key)
 			hashKey := int(m.hash([]byte(strconv.Itoa(i) + key)))
+			log.Println("virtual hash key", hashKey, "origin key", key)
 			m.keys = append(m.keys, hashKey)
 			m.hashMap[hashKey] = key
 		}
@@ -45,9 +50,12 @@ func (m *Map) Get(key string) string {
 		return ""
 	}
 	hash := int(m.hash([]byte(key)))
+	// sort.Search binary search
+	// return find smallest value
 	idx := sort.Search(len(m.keys), func(i int) bool {
-		return m.keys[i] > hash
+		return m.keys[i] >= hash
 	})
+	log.Println("idx", idx)
 
 	// 通过hashKey去找真是key
 	return m.hashMap[m.keys[idx%len(m.keys)]]
