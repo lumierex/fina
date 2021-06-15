@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/fcache/fcache.iml" filepath="$PROJECT_DIR$/fcache/fcache.iml" />
       <module fileurl="file://$PROJECT_DIR$/fina.iml" filepath="$PROJECT_DIR$/fina.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ftest/ftest.iml" filepath="$PROJECT_DIR$/ftest/ftest.iml" />
       <module fileurl="file://$PROJECT_DIR$/rpc/rpc.iml" filepath="$PROJECT_DIR$/rpc/rpc.iml" />
     </modules>
   </component>
